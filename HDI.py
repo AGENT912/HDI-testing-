@@ -161,7 +161,7 @@ while True:
         print('  Tr37')
         print(' Special thanks')
         print('  Sairsay')
-        print('  Anonimus, who learn German lang')
+        print('  AGENT912')
     else:
         print(colorama.Fore.LIGHTRED_EX+' ')
         print('SYNTAX_ERR')
