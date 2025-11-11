@@ -80,21 +80,21 @@ while True:
         print('  cudir       - Show current dir')
         print('  exit        - Exit the program')
         print('  help        - Show this guide')
-        print('  delite file - Delite file')
-        print('  delite dir  - Delite empty dir')
+        print('  delete file - Delete file')
+        print('  delete dir  - Delete empty dir')
         print('  rename      - Rename file or dir')
         print('  copy        - Copy file')
         print('  qr          - Show secret QR-code')
         print('  credits     - Show creators')
-    elif cow=='del file' or cow=='delite file':
+    elif cow=='del file' or cow=='delete file':
         print('Dir:',os.getcwd())
         os.remove(input('File:'))
-        print('File will be delited!')
-    elif cow=='del dir' or cow=='delite dir':
+        print('File will be deleted!')
+    elif cow=='del dir' or cow=='delete dir':
         dirpath=input('Dir:')
         try:
             os.rmdir(dirpath)
-            print('Dir will be delited')
+            print('Dir will be deleted')
         except:
             print(colorama.Fore.LIGHTRED_EX + '    DELDIR_ERR')
             print(colorama.Fore.WHITE + '    May be name of dir is invalid')
