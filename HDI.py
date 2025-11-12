@@ -169,7 +169,7 @@ while True:
     elif cow=='credits':
         print('(C)AXI 2025')
         print('  Tr37')
-        print(' Special thanks')
+        print(' Special thanks to:')
         print('  Sairsay')
         print('  AGENT912')
     else:
