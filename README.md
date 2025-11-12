@@ -52,3 +52,5 @@
      copy - Copy file
      qr - Show secret QR-code
      credits - Show creators
+
+ We'll be adding more languages ​​soon. Stay tuned for HDI's development ;)  
