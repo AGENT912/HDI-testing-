@@ -8,13 +8,21 @@ import colorama
 colorama.init()
 import turtle
 import time
-turtle.hideturtle() #making turtle invisible
+
+screen = turtle.Screen()
+
+screen.setup(width=1.0, height=1.0)
+screen._root.attributes('-fullscreen', True)  
+
+turtle.hideturtle()
 turtle.penup()
-turtle.goto(-100, 0) #now turtle is in the default position
+turtle.goto(-100, 0)
 turtle.pendown()
+turtle.speed(2)
 turtle.write("Hello", font=("Arial", 72, "italic"))
-time.sleep(3) #waiting 3 seconds
-turtle.bye() #closing the window
+
+time.sleep(3)
+turtle.bye()
 
 print(colorama.Fore.WHITE+colorama.Back.BLACK+' ')
 print('HDI β RCD.1.0')
