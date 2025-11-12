@@ -174,6 +174,6 @@ while True:
         print('  AGENT912')
     else:
         print(colorama.Fore.LIGHTRED_EX+' ')
-        print('SYNTAX_ERR')
+        print('SYNTAX_ERROR')
         print(colorama.Fore.WHITE+'')
 #(C)AXI 2025
