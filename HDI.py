@@ -6,6 +6,16 @@ import platform
 import sys
 import colorama
 colorama.init()
+import turtle
+import time
+turtle.hideturtle() #making turtle invisible
+turtle.penup()
+turtle.goto(-100, 0) #now turtle is in the default position
+turtle.pendown()
+turtle.write("Hello", font=("Arial", 72, "italic"))
+time.sleep(3) #waiting 3 seconds
+turtle.bye() #closing the window
+
 print(colorama.Fore.WHITE+colorama.Back.BLACK+' ')
 print('HDI β RCD.1.0')
 print(colorama.Style.RESET_ALL+'—————————')
