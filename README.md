@@ -54,3 +54,5 @@
      credits - Show creators
 
  We'll be adding more languages ​​soon. Stay tuned for HDI's development ;)  
+
+Development of GUI for HDI is started. It is called BlackWhale and you can see information about it at github.com/AGENT912/blackwhale
