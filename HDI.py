@@ -15,6 +15,102 @@ with open("config.conf", 'r', encoding='utf-8') as file:
 file.close()
 
 def main():
+    # Output Header
+    print(colorama.Fore.WHITE+colorama.Back.BLACK+' ')
+    print('HDI β8')
+    print(colorama.Style.RESET_ALL+'—————————')
+
+
+    # Main part
+    while True:
+        cow=input('$').strip().split(" ")
+        Cow_Herder(cow)
+
+def Cow_Herder(cow_list):
+    if cow_list[0]=='index': # Index command
+        index()
+
+    elif cow_list[0]=='read': # Read txt file
+        read(cow_list[1:])
+
+    elif cow_list[0]=='open': # Open file with default application
+        runfile(cow_list[1:])
+
+    elif cow_list[0]=='chdir' or cow_list[0]=='cd': # Change dir
+        chdir(cow_list[1:])
+
+    elif cow_list[0]=='exit': # For haters)
+        sys.exit()
+
+    elif cow_list[0]=='help': # Help manual
+        print(colorama.Fore.CYAN + 'HDI β1.0 Help Guide')
+        print(colorama.Fore.WHITE + 'Commands:')
+        print('  index                     - Show directory contents')
+        print('  read    [name]            - Read a text file')
+        print('  open    [name]            - Open a file with default app')
+        print('  chdir   [path]            - Change current directory')
+        print('  cdir    [path]            - Create dir')
+        print('  cudir                     - Show current dir')
+        print('  exit                      - Exit the program')
+        print('  help                      - Show this guide')
+        print('  delfile [name]            - Delete file')
+        print('  deldir  [path]            - Delete empty dir')
+        print('  renm    [name] [new_name] - Rename file or dir')
+        print('  copy    [scr]  [dest]     - Copy file')
+        print('  about                     - About HDI')
+        print('  log     [text]            - Log text to console')
+        print('  fms     [name]            - Run FMS script')
+
+    elif cow_list[0]=='delfile': # Delete file
+        delfile(cow_list[1:])
+
+    elif cow_list[0]=='deldir': # Delete dir
+        deldir(cow_list[1:])
+
+    elif cow_list[0]=='renm': # Rename file or dir
+        rename(cow_list[1:])
+
+    elif cow_list[0]=='cdir': # Create dir
+        cdir(cow_list[1:])
+
+    elif cow_list[0]=='cudir': # Show current dir
+        print('Current dir:   ',os.getcwd())
+
+    elif cow_list[0]=='copy': # Copy file
+        f_ck_copy(cow_list[1:])
+    
+    elif cow_list[0]=='qr': # Emm, here was be a qr code to NOWKIES Telegram post
+        print('Ha!')
+        print('What you want to see here?')
+
+    elif cow_list[0]=='about' or cow_list[0]=='screenfetch': # About HDI
+        print('')
+        print('▓▓▓▓▓▓▓▓▓▓▓▓▒')
+        print('▓           ▒',)
+        print('▓ HDI       ▒')
+        print('▓ ────      ▒',colorama.Style.BRIGHT+colorama.Fore.LIGHTWHITE_EX+'       HDI 1.0')
+        print('▓ $         ▒'+colorama.Style.RESET_ALL+colorama.Fore.WHITE)
+        print('▓           ▒')
+        print('▒▒▒▒▒▒▒▒▒▒▒▒▒')
+        print('')
+        print(' HDI it`s a simple open sourse console file manager based on Python3')
+        print('')
+        print('Developers:')
+        print('  Tr37')
+        print('  Sairsay')
+        print('  AGENT912')
+
+    elif cow_list[0]=='log':
+        print(colorama.Fore.LIGHTBLUE_EX+' '.join(cow_list[1:]).rstrip('\n'), colorama.Fore.WHITE)
+    
+    elif cow_list[0]=='fms':
+            fms(cow_list[1])
+    elif cow_list[0]=='' or cow_list[0]=='\n' or cow_list[0]=='#':
+        123
+    else: # This SYNTAX else)
+        print(colorama.Fore.LIGHTRED_EX+' ')
+        print('SYNTAX_ERR')
+        print(colorama.Fore.WHITE+'')
     return 0
 
 def index():    # Index command
@@ -36,10 +132,10 @@ def index():    # Index command
         print('    Or your system is do not supported')
     return 0
 
-def read():     # Read txt file
+def read(File):     # Read txt file
     try:
         print('Dir:',os.getcwd())
-        with open(input('File:'), 'r') as file:
+        with open(File[0].rstrip('\n'), 'r') as file:
             contenta = file.read()
         print(colorama.Fore.LIGHTBLACK_EX+'------------------')
         print(colorama.Fore.LIGHTBLUE_EX+' ')
@@ -54,10 +150,10 @@ def read():     # Read txt file
         print('    Or your system is do not supported')
     return 0
 
-def runfile():       # Run file
+def runfile(File):       # Run file
     try:
         print('Dir:',os.getcwd())
-        filepath = os.getcwd() + "/" + input('File:')
+        filepath = os.getcwd() + "/" + File[0].rstrip('\n')
         if platform.system() == 'Darwin':       # for macOS
             subprocess.call(('open', filepath))
         elif platform.system() == 'Windows':    # for Windows
@@ -70,9 +166,9 @@ def runfile():       # Run file
         print('    Or your system is do not supported')
     return 0
 
-def chdir():        # Change dir
+def chdir(File):        # Change dir
     try:
-         os.chdir(input('Dir:'))
+         os.chdir(File[0].rstrip('\n'))
          print('Dir will be changed!')
     except:
         print(colorama.Fore.LIGHTRED_EX + '    CHDIR_ERR')
@@ -80,10 +176,10 @@ def chdir():        # Change dir
         print('    Or your system is do not supported')
     return 0
 
-def delfile():       # Delete flie
+def delfile(File):       # Delete flie
     try:
         print('Dir:',os.getcwd())
-        os.remove(input('File:'))
+        os.remove(File[0].rstrip('\n'))
         print('File will be deleted!')
     except:
         print(colorama.Fore.LIGHTRED_EX + '    DEL_FILE_ERR')
@@ -91,8 +187,8 @@ def delfile():       # Delete flie
         print('    Or your system is do not supported')
     return 0
 
-def deldir():       # Delete dir
-    dirpath=input('Dir:')
+def deldir(File):       # Delete dir
+    dirpath=File[0].rstrip('\n')
     try:
         os.rmdir(dirpath)
         print('Dir will be deleted')
@@ -103,10 +199,10 @@ def deldir():       # Delete dir
         print('    Or your system is do not supported')
     return 0
 
-def rename():
+def rename(File):
     try:
         print('Current dir:',os.getcwd())
-        os.rename(input('File or path of dir:'), input('Rename to:'))
+        os.rename(File[0].rstrip('\n'), File[1].rstrip('\n'))
         print('File or dir will be renamed!')
     except:
         print(colorama.Fore.LIGHTRED_EX + '    RENAME_ERR')
@@ -114,9 +210,9 @@ def rename():
         print('    Or your system is do not supported')
     return 0
 
-def cdir():     # Create dir
+def cdir(File):     # Create dir
     try:
-        os.mkdir(input('Path of new dir:'))
+        os.mkdir(''.join(File[0]).rstrip('\n'))
         print('Dir will be created!')
     except:
         print(colorama.Fore.LIGHTRED_EX + '    CREATE_DIR_ERR')
@@ -124,9 +220,9 @@ def cdir():     # Create dir
         print('    Or your system is do not supported')
     return 0
 
-def f_ck_copy():     # Copy file
-    src = input('Source path:')
-    dest = input('Copy to:')
+def f_ck_copy(File):     # Copy file
+    src = File[0].rstrip('\n')
+    dest = File[1].rstrip('\n')
     print(src, dest) 
     try:
         if platform.system() == 'Darwin':       # for macOS
@@ -141,94 +237,25 @@ def f_ck_copy():     # Copy file
         print('    Or your system is do not supported')
     return 0
 
-# Output Header
-print(colorama.Fore.WHITE+colorama.Back.BLACK+' ')
-print('HDI β7')
-print(colorama.Style.RESET_ALL+'—————————')
+def fms(path):
+    try:
+        with open(path+'.fms', 'r', encoding='utf-8') as file:
+            script = file.readlines()
+            file.close()
+        for i in script:
+            Cow_Herder(i.rstrip('\n').split(' '))
+    except:
+        print(colorama.Fore.LIGHTRED_EX + '    FSM_ERR')
+        print(colorama.Fore.WHITE + '    May be name of script is invalid')
+        print('    Or script will be wrong')
 
+# Run Part  
+if sys.argv[-1]!=sys.argv[0]:
+    if sys.argv[1]=='fms':
+        fms(' '.join(sys.argv[2:]))
+    else:
+        main()
+else:
+    main()
 
-# Main part
-while True:
-    cow=input('$').strip() 
-
-    if cow=='index': # Index command
-        index()
-
-    elif cow=='read': # Read txt file
-        read()
-
-    elif cow=='open': # Open file with default application
-        runfile()
-
-    elif cow=='chdir': # Change dir
-        chdir()
-
-    elif cow=='exit': # For haters)
-        sys.exit()
-
-    elif cow=='help': # Help manual
-        print(colorama.Fore.CYAN + 'HDI β1.0 Help Guide')
-        print(colorama.Fore.WHITE + 'Commands:')
-        print('  index       - Show directory contents')
-        print('  read        - Read a text file')
-        print('  open        - Open a file with default app')
-        print('  chdir       - Change current directory')
-        print('  cdir        - Create dir')
-        print('  cudir       - Show current dir')
-        print('  exit        - Exit the program')
-        print('  help        - Show this guide')
-        print('  delete file - Delete file')
-        print('  delete dir  - Delete empty dir')
-        print('  rename      - Rename file or dir')
-        print('  copy        - Copy file')
-        print('  qr          - Show secret QR-code')
-        print('  about       - About HDI')
-
-    elif cow=='del file' or cow=='delete file': # Delete file
-        delfile()
-
-    elif cow=='del dir' or cow=='delete dir': # Delete dir
-        deldir()
-
-    elif cow=='rename' or cow=='renm': # Rename file or dir
-        rename()
-
-    elif cow=='create dir' or cow=='cdir': # Create dir
-        cdir()
-
-    elif cow=='cudir': # Show current dir
-        print('Current dir:   ',os.getcwd())
-
-    elif cow=='copy': # Copy file
-        f_ck_copy()
-    
-    elif cow=='qr': # Emm, here was be a qr code to NOWKIES Telegram post
-        print('Ha!')
-        print('What you want to see here?')
-
-    elif cow=='about': # About HDI
-        print('')
-        print('▓▓▓▓▓▓▓▓▓▓▓▓▒')
-        print('▓           ▒       ',colorama.Back.LIGHTWHITE_EX+colorama.Fore.BLACK+'αxi')
-        print(colorama.Back.BLACK+colorama.Fore.WHITE+'▓ HDI       ▒')
-        print('▓ ────      ▒',colorama.Style.BRIGHT+colorama.Fore.LIGHTWHITE_EX+'       HDI 1.0')
-        print(colorama.Style.RESET_ALL+colorama.Fore.WHITE+'▓ $         ▒')
-        print('▓           ▒')
-        print('▒▒▒▒▒▒▒▒▒▒▒▒▒')
-        print('')
-        print(' HDI it`s a simple open sourse console file manager based on Python3')
-        print('')
-        print('Developers from AXI:')
-        print('  Tr37')
-        print('Another Developers')
-        print('  Sairsay')
-        print('  AGENT912')
-        print('')
-        print('(C)AXI 2025')
-
-    else: # This SYNTAX else)
-        print(colorama.Fore.LIGHTRED_EX+' ')
-        print('SYNTAX_ERROR')
-        print(colorama.Fore.WHITE+'')
-
-# from AXI in 2025
+# by TR37 https://t.me/tr333777
