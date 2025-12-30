@@ -7,7 +7,7 @@ import subprocess
 import platform
 import sys
 import colorama
-colorama.init()
+colorama.init(
 
 # Read config file
 with open("config.conf", 'r', encoding='utf-8') as file:
